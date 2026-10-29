@@ -331,6 +331,26 @@ Screenshots are written to `reports/screenshots/`. The committed copies under `d
 
 ## Docker
 
+### Published images
+
+The verified image is published to both registries:
+
+| Registry | Image |
+| --- | --- |
+| Docker Hub | `keerthireddy010805/student-attendance:1.0.0` |
+| GitHub Container Registry | `ghcr.io/keerthi-reddy01/student-attendance:1.0.0` |
+
+```bat
+docker pull keerthireddy010805/student-attendance:1.0.0
+docker run -d --name student-attendance-app ^
+  -p 3000:3000 ^
+  -e SEED_ON_EMPTY=true ^
+  -v attendance-data:/app/data ^
+  keerthireddy010805/student-attendance:1.0.0
+```
+
+The `latest` tag points to the same image. Docker Hub: <https://hub.docker.com/r/keerthireddy010805/student-attendance>. The GHCR image is built and pushed automatically by `.github/workflows/docker-publish.yml` on every `main` push; the GitHub Actions run for commit `c074e1f` completed successfully.
+
 ### Build and run
 
 ```bat
@@ -542,6 +562,7 @@ Verified on **2026-10-29**. Full command output and environment details are in [
 | Attendance | Seven periods, corrections, reload persistence | PASS |
 | Monthly report | Totals, percentages, threshold flags, CSV | PASS |
 | Docker | Build, non-root runtime, health check, API write | PASS |
+| Docker registry | Docker Hub and GHCR `1.0.0`/`latest` images published and manifest-verified | PASS |
 | Docker persistence | Record survives container restart via named volume | PASS |
 | Jenkins | Portable install, plugins, pipeline job | PASS |
 | Jenkins security | Anonymous API access denied (403), authenticated access allowed (200) | PASS |

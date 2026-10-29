@@ -63,6 +63,9 @@ Screenshots are stored in [`docs/screenshots/`](screenshots/). The E2E suite run
 | Container health check | PASS (`/api/health`) |
 | Docker persistence smoke test | PASS — student record survived container restart through the named volume |
 | Docker Compose | Build, start and health verified in the prior validation run; stack stopped afterward |
+| Docker Hub | `keerthireddy010805/student-attendance:1.0.0` and `:latest` pushed; manifest digest `sha256:b5941b20...` |
+| GHCR | `ghcr.io/keerthi-reddy01/student-attendance:1.0.0` and `:latest`; GitHub Actions run #1 succeeded |
+| Registry verification | Anonymous `docker manifest inspect` succeeded for Docker Hub and GHCR |
 
 The smoke test uses disposable container `attendance-ci-smoke` and volume, then removes both. It validates health, frontend serving, API writes and SQLite volume persistence.
 
@@ -72,7 +75,7 @@ The smoke test uses disposable container `attendance-ci-smoke` and volume, then 
 | --- | --- |
 | Portable installation | PASS — `C:\devops\jenkins`, bundled JDK 21, no administrator rights |
 | Plugins | workflow-aggregator, git, junit, timestamper, pipeline-stage-view, ansicolor |
-| Job | `Attendance-Pipeline`, SCM `file:///C:/devops/student%20attendance%20managment` |
+| Job | `Attendance-Pipeline`, SCM `https://github.com/keerthi-reddy01/student-attendance-managment-.git` |
 | Authentication | PASS — `admin` account via `HudsonPrivateSecurityRealm` |
 | Authorization | PASS — `FullControlOnceLoggedInAuthorizationStrategy`, anonymous read disabled |
 | Anonymous job API | **HTTP 403** |
@@ -129,8 +132,13 @@ Then open <http://localhost:8081>.
 | Visibility | Public |
 | Branch | `main` |
 | Remote | `origin` → `https://github.com/keerthi-reddy01/student-attendance-managment-.git` |
-| Pushed HEAD | `f4bda9b` — full commit history and documentation |
+| Docker workflow commit | `c074e1f` — source, documentation and container workflow |
+| GitHub Actions | **Publish Docker image #1 — SUCCESS** for commit `c074e1f` |
+| GHCR image | `ghcr.io/keerthi-reddy01/student-attendance:1.0.0` / `:latest` |
 | Jenkins SCM | Job `Attendance-Pipeline` now checks out the GitHub repository |
+
+Docker image build: <https://github.com/keerthi-reddy01/student-attendance-managment-/actions/runs/40833195159>  
+Docker Hub: <https://hub.docker.com/r/keerthireddy010805/student-attendance>
 
 ## 8. Reproduce the verification
 
