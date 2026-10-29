@@ -268,8 +268,10 @@ Save attendance:
 ```bash
 curl -X POST http://localhost:3000/api/attendance/bulk \
   -H "Content-Type: application/json" \
-  -d '{"date":"2026-10-29","records":[{"studentId":1,"periods":{"1":"present","2":"present","3":"absent","4":"present","5":"present","6":"present","7":"present"}}]}'
+  -d '{"date":"2026-10-29","records":[{"studentId":18,"periods":{"1":"present","2":"present","3":"absent","4":"present","5":"present","6":"present","7":"present"}}]}'
 ```
+
+Use an ID returned by `GET /api/students`; in the clean demo database the first student (`CS001`) has ID `18`.
 
 Errors use a consistent shape:
 
@@ -325,7 +327,7 @@ The 7 tests cover:
 6. Settings persist the attendance threshold.
 7. Mobile navigation and layout remain usable.
 
-Screenshots are written to `reports/screenshots/`.
+Screenshots are written to `reports/screenshots/`. The committed copies under `docs/screenshots/` show the E2E workflow from the disposable test database; `99-final-state.png` is recaptured from the clean demo database.
 
 ## Docker
 
@@ -545,7 +547,7 @@ Verified on **2026-10-29**. Full command output and environment details are in [
 | Docker persistence | Record survives container restart via named volume | PASS |
 | Jenkins | Portable install, plugins, pipeline job | PASS |
 | Jenkins security | Anonymous API access denied (403), authenticated access allowed (200) | PASS |
-| Jenkins pipeline | Build #5 SUCCESS; 14/14 API tests, Docker smoke, 7/7 Selenium, Kubernetes deploy | PASS |
+| Jenkins pipeline | Build #6 SUCCESS; 14/14 API tests, Docker smoke, 7/7 Selenium, Kubernetes deploy | PASS |
 | Kubernetes | Deployment, Service, NodePort 30080, readiness/liveness probes | PASS |
 | Kubernetes persistence | Record survives pod reschedule via 1 GiB PVC | PASS |
 | Kubernetes live data | 12 students and threshold 75 after smoke-test cleanup | PASS |
