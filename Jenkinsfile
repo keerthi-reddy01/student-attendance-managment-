@@ -70,8 +70,9 @@ pipeline {
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: 'reports/junit.xml'
-            archiveArtifacts artifacts: 'reports/junit.xml, reports/screenshots/**/*.png, reports/*.log', allowEmptyArchive: true
+            node {
+                archiveArtifacts artifacts: 'reports/junit.xml, reports/screenshots/**/*.png, reports/*.log', allowEmptyArchive: true
+            }
         }
         success {
             echo 'All validation stages passed. Screenshots and JUnit results are archived on this build.'
