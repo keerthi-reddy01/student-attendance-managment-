@@ -400,7 +400,7 @@ The installer:
 3. Uses the Jenkins Plugin Installation Manager to install `workflow-aggregator`, `git`, `junit`, `timestamper`, `pipeline-stage-view` and `ansicolor`.
 4. Creates `JENKINS_HOME` at `C:\devops\jenkins\home`.
 5. Creates the `admin` account and a full-control authorization strategy.
-6. Creates the pipeline job **Attendance-Pipeline** using the local Git repository.
+6. Creates the pipeline job **Attendance-Pipeline** using the GitHub repository URL.
 7. Writes credentials to `C:\devops\jenkins\credentials.txt`.
 
 ### Start, open and stop
@@ -453,7 +453,7 @@ scripts\trigger-jenkins.cmd -DeployK8s
 
 The trigger script authenticates with the credentials file, requests a CSRF crumb, queues the build, waits for completion, prints the result and saves the console log under `reports/jenkins-build-<number>.log`.
 
-> Jenkins checks out the repository from the local Git URL configured in the job. After pushing to GitHub, change the job's **Pipeline → Definition → SCM → Repository URL** to the GitHub HTTPS URL and add a username/PAT credential.
+> Jenkins checks out the repository from the GitHub URL configured in the job. For a private repository, add a **Username with password** credential and select it in the job's SCM configuration.
 
 ## Kubernetes
 
@@ -509,27 +509,25 @@ kubectl -n attendance logs deployment/attendance-app
 
 ## Git and GitHub
 
-The project is a local Git repository with a `main` branch.
+The project is published at <https://github.com/keerthi-reddy01/student-attendance-managment-> on the `main` branch. The `origin` remote is already configured.
 
 ```bat
 git status
 git log --oneline
+git push
 ```
 
-### Publish to GitHub
-
-1. Create an empty repository on GitHub (do **not** initialize it with a README).
-2. Add the remote and push:
+To publish a copy to another account, create an empty repository (do **not** initialize it with a README), then run:
 
 ```bat
-git remote add origin https://github.com/<your-account>/student-attendance-devops.git
+git remote set-url origin https://github.com/<your-account>/<repository>.git
 git branch -M main
 git push -u origin main
 ```
 
-Use a GitHub Personal Access Token or GitHub CLI for authentication. Never commit tokens, `data/`, `reports/` or `logs/`; they are excluded by `.gitignore`.
+Use a GitHub Personal Access Token, Git Credential Manager or GitHub CLI for authentication. Never commit tokens, `data/`, `reports/` or `logs/`; they are excluded by `.gitignore`.
 
-After pushing, update the Jenkins job's SCM URL to the GitHub repository. For private repositories, add a **Username with password** credential in Jenkins and select it in the job's SCM configuration.
+The Jenkins job **Attendance-Pipeline** is configured to check out the GitHub repository directly. For a private repository, add a **Username with password** credential in Jenkins and select it in the job's SCM configuration.
 
 ## Verification checklist
 
@@ -547,7 +545,8 @@ Verified on **2026-10-29**. Full command output and environment details are in [
 | Docker persistence | Record survives container restart via named volume | PASS |
 | Jenkins | Portable install, plugins, pipeline job | PASS |
 | Jenkins security | Anonymous API access denied (403), authenticated access allowed (200) | PASS |
-| Jenkins pipeline | Build #6 SUCCESS; 14/14 API tests, Docker smoke, 7/7 Selenium, Kubernetes deploy | PASS |
+| GitHub | Full history pushed to `keerthi-reddy01/student-attendance-managment-` | PASS |
+| Jenkins pipeline | Build #7 SUCCESS; 14/14 API tests, Docker smoke, 7/7 Selenium, Kubernetes deploy | PASS |
 | Kubernetes | Deployment, Service, NodePort 30080, readiness/liveness probes | PASS |
 | Kubernetes persistence | Record survives pod reschedule via 1 GiB PVC | PASS |
 | Kubernetes live data | 12 students and threshold 75 after smoke-test cleanup | PASS |
@@ -593,7 +592,7 @@ Then rerun `scripts\run-docker-smoke.cmd` or `docker compose up -d --build`.
 
 ### Jenkins build cannot find the repository
 
-The pre-created job uses `file:///C:/devops/student%20attendance%20managment`. Confirm the repository has a `main` branch and at least one commit:
+The pre-created job uses `https://github.com/keerthi-reddy01/student-attendance-managment-.git`. Confirm the repository has a `main` branch and at least one commit:
 
 ```bat
 git log --oneline -1

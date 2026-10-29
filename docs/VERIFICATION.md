@@ -78,11 +78,11 @@ The smoke test uses disposable container `attendance-ci-smoke` and volume, then 
 | Anonymous job API | **HTTP 403** |
 | Authenticated job/build API | **HTTP 200** |
 | JUnit report | **14 tests, 0 failures, 0 skipped** |
-| Final build | **#6 — SUCCESS**, 60.9 s, `DEPLOY_K8S=true` |
-| Build #6 commit | `a54119c9704e2b53f189f70d84b1bd0734e3fe27` |
-| Previous build | **#5 — SUCCESS**, 61.4 s, commit `bf07215` |
+| Final build | **#7 — SUCCESS**, 61.7 s, `DEPLOY_K8S=true`, checked out from GitHub |
+| Build #7 commit | `f4bda9b3373bddff4b4f1ddd405205ee49b04481` |
+| Previous build | **#6 — SUCCESS**, 60.9 s, commit `a54119c` |
 
-Build #6 executed every pipeline stage:
+Build #7 executed every pipeline stage:
 
 1. Toolchain — Node v24.22.1, npm 11.19.1, Docker server 29.9.2.
 2. Install dependencies — `npm ci`, 101 packages, 0 vulnerabilities.
@@ -93,8 +93,8 @@ Build #6 executed every pipeline stage:
 7. Kubernetes deploy and persistence check — PASS.
 8. Post actions — JUnit, screenshots and logs archived.
 
-Build URL: <http://localhost:8080/job/Attendance-Pipeline/6/>  
-Local console log: `reports/jenkins-build-6.log` (generated, gitignored).
+Build URL: <http://localhost:8080/job/Attendance-Pipeline/7/>  
+Local console log: `reports/jenkins-build-7.log` (generated, gitignored).
 
 ## 6. Kubernetes
 
@@ -120,7 +120,19 @@ kubectl -n attendance port-forward svc/attendance-service 8081:80
 
 Then open <http://localhost:8081>.
 
-## 7. Reproduce the verification
+## 7. GitHub
+
+| Check | Result |
+| --- | --- |
+| Account | `keerthi-reddy01` (authenticated with Git Credential Manager) |
+| Repository | <https://github.com/keerthi-reddy01/student-attendance-managment-> |
+| Visibility | Public |
+| Branch | `main` |
+| Remote | `origin` → `https://github.com/keerthi-reddy01/student-attendance-managment-.git` |
+| Pushed HEAD | `f4bda9b` — full commit history and documentation |
+| Jenkins SCM | Job `Attendance-Pipeline` now checks out the GitHub repository |
+
+## 8. Reproduce the verification
 
 ```bat
 cd /d "C:\devops\student attendance managment"
@@ -139,9 +151,8 @@ kubectl -n attendance get pods,svc,pvc
 kubectl -n attendance rollout status deployment/attendance-app
 ```
 
-## 8. Known limitations
+## 9. Known limitations
 
-- The GitHub remote was not created because no GitHub credentials or authenticated GitHub CLI were available. The local repository, commit history and push instructions are complete; see the README.
 - Jenkins credentials are stored in `C:\devops\jenkins\credentials.txt` for local demonstration. Use a secret manager and HTTPS in any shared environment.
 - SQLite with a single replica and a `ReadWriteOnce` volume is appropriate for this teaching project, not for horizontally scaled production use.
 - On Windows with the Minikube Docker driver, NodePort 30080 is reachable inside the cluster network; use `kubectl port-forward` or `minikube service` from the host.

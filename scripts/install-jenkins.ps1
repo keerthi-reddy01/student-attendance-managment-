@@ -1,5 +1,6 @@
 param(
     [string]$BaseDir = 'C:\devops\jenkins',
+    [string]$RepoUrl = 'https://github.com/keerthi-reddy01/student-attendance-managment-.git',
     [switch]$Force
 )
 
@@ -138,7 +139,7 @@ $jobConfig = @'
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
-          <url>file:///C:/devops/student%20attendance%20managment</url>
+          <url>__REPO_URL__</url>
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
       <branches>
@@ -157,6 +158,7 @@ $jobConfig = @'
   <disabled>false</disabled>
 </flow-definition>
 '@
+$jobConfig = $jobConfig.Replace('__REPO_URL__', $RepoUrl)
 Set-Content -Path (Join-Path $jobDir 'config.xml') -Value $jobConfig -Encoding UTF8
 
 $credentials = @"
