@@ -81,11 +81,11 @@ The smoke test uses disposable container `attendance-ci-smoke` and volume, then 
 | Anonymous job API | **HTTP 403** |
 | Authenticated job/build API | **HTTP 200** |
 | JUnit report | **14 tests, 0 failures, 0 skipped** |
-| Final build | **#7 — SUCCESS**, 61.7 s, `DEPLOY_K8S=true`, checked out from GitHub |
-| Build #7 commit | `f4bda9b3373bddff4b4f1ddd405205ee49b04481` |
-| Previous build | **#6 — SUCCESS**, 60.9 s, commit `a54119c` |
+| Final build | **#8 — SUCCESS**, 68.2 s, `DEPLOY_K8S=true`, checked out from GitHub |
+| Build #8 commit | `5699d378370e8cada11dbd1d0fb5b8fae3ce6f61` |
+| Previous build | **#7 — SUCCESS**, 61.7 s, commit `f4bda9b` |
 
-Build #7 executed every pipeline stage:
+Build #8 executed every pipeline stage:
 
 1. Toolchain — Node v24.22.1, npm 11.19.1, Docker server 29.9.2.
 2. Install dependencies — `npm ci`, 101 packages, 0 vulnerabilities.
@@ -96,8 +96,8 @@ Build #7 executed every pipeline stage:
 7. Kubernetes deploy and persistence check — PASS.
 8. Post actions — JUnit, screenshots and logs archived.
 
-Build URL: <http://localhost:8080/job/Attendance-Pipeline/7/>  
-Local console log: `reports/jenkins-build-7.log` (generated, gitignored).
+Build URL: <http://localhost:8080/job/Attendance-Pipeline/8/>  
+Local console log: `reports/jenkins-build-8.log` (generated, gitignored).
 
 ## 6. Kubernetes
 

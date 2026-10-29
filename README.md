@@ -567,7 +567,7 @@ Verified on **2026-10-29**. Full command output and environment details are in [
 | Jenkins | Portable install, plugins, pipeline job | PASS |
 | Jenkins security | Anonymous API access denied (403), authenticated access allowed (200) | PASS |
 | GitHub | Full history pushed to `keerthi-reddy01/student-attendance-managment-` | PASS |
-| Jenkins pipeline | Build #7 SUCCESS; 14/14 API tests, Docker smoke, 7/7 Selenium, Kubernetes deploy | PASS |
+| Jenkins pipeline | Build #8 SUCCESS; 14/14 API tests, Docker smoke, 7/7 Selenium, Kubernetes deploy | PASS |
 | Kubernetes | Deployment, Service, NodePort 30080, readiness/liveness probes | PASS |
 | Kubernetes persistence | Record survives pod reschedule via 1 GiB PVC | PASS |
 | Kubernetes live data | 12 students and threshold 75 after smoke-test cleanup | PASS |
