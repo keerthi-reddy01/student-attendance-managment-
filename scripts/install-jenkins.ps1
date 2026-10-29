@@ -103,7 +103,7 @@ if (!(instance.getSecurityRealm() instanceof HudsonPrivateSecurityRealm)) {
 }
 '@
 $securityScript = $securityScript.Replace('__PASSWORD__', $password)
-Set-Content -Path (Join-Path $initDir '01-security.groovy') -Value $securityScript -Encoding UTF8
+Set-Content -Path (Join-Path $initDir '01-security.groovy') -Value $securityScript -Encoding ASCII
 
 $locationXml = @'
 <?xml version='1.1' encoding='UTF-8'?>

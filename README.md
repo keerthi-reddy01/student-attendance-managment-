@@ -19,6 +19,7 @@ A complete web application for recording **seven-period daily attendance**, stor
 - [Kubernetes](#kubernetes)
 - [Git and GitHub](#git-and-github)
 - [Verification checklist](#verification-checklist)
+- [Detailed verification report](docs/VERIFICATION.md)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
 
@@ -56,7 +57,7 @@ A complete web application for recording **seven-period daily attendance**, stor
 - Health endpoint used by Docker, Kubernetes and monitoring checks.
 - API tests with Node's test runner and Supertest.
 - Selenium WebDriver browser tests in headless Chrome.
-- Multi-stage-style Dockerfile with a non-root runtime user and container health check.
+- Production Dockerfile with a non-root runtime user and container health check.
 - Jenkins pipeline for install, API tests, Docker build, persistence smoke test, Selenium E2E and optional Kubernetes deployment.
 - Kubernetes Deployment, Service, PVC, readiness/liveness probes and persistence validation.
 - Responsive UI with mobile navigation, keyboard-accessible modals and toast feedback.
@@ -412,6 +413,17 @@ scripts\stop-jenkins.cmd
 - Username/password: `C:\devops\jenkins\credentials.txt`
 - Logs: `C:\devops\jenkins\logs\jenkins.log`
 
+### Security
+
+The installer enables Jenkins' built-in security:
+
+- `HudsonPrivateSecurityRealm` creates the `admin` account.
+- `FullControlOnceLoggedInAuthorizationStrategy` grants full control to authenticated users and disables anonymous read access.
+- Anonymous requests to the dashboard, job API and build pages return **HTTP 403** and are redirected to the sign-in page; authenticated API requests return **HTTP 200**.
+- The initial security script is written as ASCII without a BOM so Jenkins applies it on startup.
+
+Credentials are stored outside the repository in `C:\devops\jenkins\credentials.txt`. This is suitable for a local demonstration only; use a secret manager and HTTPS for any shared deployment.
+
 ### Pipeline stages
 
 | Stage | What it validates |
@@ -519,20 +531,25 @@ After pushing, update the Jenkins job's SCM URL to the GitHub repository. For pr
 
 ## Verification checklist
 
+Verified on **2026-10-29**. Full command output and environment details are in [docs/VERIFICATION.md](docs/VERIFICATION.md).
+
 | Area | Check | Result |
 | --- | --- | --- |
 | Application | Server boots, dashboard and all pages load | PASS |
 | API | 14/14 Supertest integration tests | PASS |
+| Live API | `npm run verify` — 9/9 read-only checks against port 3000 | PASS |
 | Selenium | 7/7 headless Chrome E2E tests | PASS |
 | Attendance | Seven periods, corrections, reload persistence | PASS |
 | Monthly report | Totals, percentages, threshold flags, CSV | PASS |
 | Docker | Build, non-root runtime, health check, API write | PASS |
 | Docker persistence | Record survives container restart via named volume | PASS |
 | Jenkins | Portable install, plugins, pipeline job | PASS |
-| Jenkins pipeline | API tests, Docker, Selenium stages | PASS |
-| Kubernetes | Deployment, Service, NodePort, probes | PASS |
-| Kubernetes persistence | Record survives pod reschedule via PVC | PASS |
-| Demo data | 12 students, current/previous month, threshold reset to 75 | PASS |
+| Jenkins security | Anonymous API access denied (403), authenticated access allowed (200) | PASS |
+| Jenkins pipeline | Build #5 SUCCESS; 14/14 API tests, Docker smoke, 7/7 Selenium, Kubernetes deploy | PASS |
+| Kubernetes | Deployment, Service, NodePort 30080, readiness/liveness probes | PASS |
+| Kubernetes persistence | Record survives pod reschedule via 1 GiB PVC | PASS |
+| Kubernetes live data | 12 students and threshold 75 after smoke-test cleanup | PASS |
+| Demo data | 12 students, 43 working dates, 3,612 attendance rows, threshold 75, 4 low-attendance students | PASS |
 
 ## Troubleshooting
 
@@ -581,6 +598,19 @@ git log --oneline -1
 ```
 
 After moving the project, update the job's SCM URL.
+
+### Jenkins security settings were not applied
+
+Jenkins init scripts must be valid Groovy and must not start with a UTF-8 BOM. Check and rewrite the security script, then restart Jenkins:
+
+```bat
+node scripts\check-bytes.js C:\devops\jenkins\home\init.groovy.d\01-security.groovy
+node scripts\strip-bom.js C:\devops\jenkins\home\init.groovy.d\01-security.groovy
+scripts\stop-jenkins.cmd
+scripts\start-jenkins.cmd
+```
+
+The `install-jenkins.ps1` script now writes this file as ASCII, so a fresh installation does not have the problem.
 
 ### Minikube or Kubernetes errors
 
