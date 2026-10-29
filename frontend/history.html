@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily History · AttendX</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="history">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></div>
+      <div><div class="brand-name">AttendX</div><div class="brand-sub">Attendance DevOps</div></div>
+    </div>
+    <div class="nav-label">Workspace</div>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" data-nav="home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2Z"/></svg>Dashboard</a>
+      <a class="nav-link" data-nav="attendance" href="attendance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 9h6M9 13h6M9 17h4"/></svg>Mark Attendance</a>
+      <a class="nav-link" data-nav="students" href="students.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Students</a>
+      <a class="nav-link" data-nav="reports" href="reports.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>Monthly Reports</a>
+      <a class="nav-link" data-nav="history" href="history.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>Daily History</a>
+      <div class="nav-label" style="margin-top:18px;">System</div>
+      <a class="nav-link" data-nav="settings" href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-line"><span class="status-dot" data-api-dot></span><span data-api-status>Checking API…</span></div>
+      <div class="sidebar-meta">Docker · Jenkins · Kubernetes · Selenium<br>&copy; <span data-year></span> AttendX</div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main">
+    <div class="main-inner">
+      <div class="mobile-bar">
+        <div class="mobile-brand"><div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></div>AttendX</div>
+        <button class="icon-btn" id="menuBtn" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+
+      <div class="page-head">
+        <div>
+          <div class="eyebrow">Records</div>
+          <h1>Daily history</h1>
+          <p>Browse saved registers by date range and open any day to make corrections.</p>
+        </div>
+        <div class="page-head-actions">
+          <button class="btn btn-primary" id="applyHistoryBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>
+            Load history
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="filter-bar">
+          <div class="field" style="gap:4px">
+            <label class="tiny muted" for="fromDate">From</label>
+            <input class="input" type="date" id="fromDate" style="width:158px">
+          </div>
+          <div class="field" style="gap:4px">
+            <label class="tiny muted" for="toDate">To</label>
+            <input class="input" type="date" id="toDate" style="width:158px">
+          </div>
+          <div class="field" style="gap:4px;min-width:220px">
+            <label class="tiny muted" for="studentFilter">Student</label>
+            <select class="select" id="studentFilter">
+              <option value="">Entire class</option>
+            </select>
+          </div>
+          <span class="muted small" id="historyRange" style="margin-left:auto;padding-top:14px">—</span>
+        </div>
+      </div>
+
+      <div class="grid grid-4 section">
+        <div class="stat" style="--tint:rgba(79,70,229,.09)">
+          <div class="stat-top"><span class="stat-label">Days with records</span><span class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></span></div>
+          <div class="stat-value" id="historyDays">—</div>
+          <div class="stat-sub" id="historyDaysSub">In the selected range</div>
+        </div>
+        <div class="stat" style="--tint:rgba(5,150,105,.09)">
+          <div class="stat-top"><span class="stat-label">Present periods</span><span class="stat-icon" style="--icon-bg:#ecfdf5;--icon-color:#059669"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg></span></div>
+          <div class="stat-value" id="historyPresent">—</div>
+          <div class="stat-sub" id="historyPresentSub">Saved attendance</div>
+        </div>
+        <div class="stat" style="--tint:rgba(225,29,72,.08)">
+          <div class="stat-top"><span class="stat-label">Absent periods</span><span class="stat-icon" style="--icon-bg:#fff1f2;--icon-color:#e11d48"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></div>
+          <div class="stat-value" id="historyAbsent">—</div>
+          <div class="stat-sub" id="historyAbsentSub">Saved attendance</div>
+        </div>
+        <div class="stat" style="--tint:rgba(2,132,199,.09)">
+          <div class="stat-top"><span class="stat-label">Average attendance</span><span class="stat-icon" style="--icon-bg:#f0f9ff;--icon-color:#0284c7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg></span></div>
+          <div class="stat-value"><span id="historyPct">—</span><span class="unit">%</span></div>
+          <div class="stat-sub" id="historyPctSub">Across saved periods</div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <div class="card-head with-border">
+          <div>
+            <h2>Attendance records</h2>
+            <p id="historySubtitle">Days with saved attendance, most recent first.</p>
+          </div>
+          <span class="badge badge-primary badge-plain" id="historyBadge">—</span>
+        </div>
+        <div class="table-wrap">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Periods marked</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th style="width:190px">Attendance</th>
+                <th>Status</th>
+                <th style="text-align:right">Register</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <tr><td colspan="8"><div class="skeleton" style="height:42px;margin:8px 0"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+          <span id="historyFooter">—</span>
+          <span>Records are stored in SQLite and survive restarts.</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/history.js"></script>
+</body>
+</html>

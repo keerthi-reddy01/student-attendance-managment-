@@ -1,0 +1,35 @@
+{
+  "name": "student-attendance-devops",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Student Attendance Management System with seven-period daily attendance, monthly analytics, Docker, Jenkins, Kubernetes and Selenium.",
+  "main": "backend/server.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "test": "node --test --test-reporter=spec tests/api.test.js",
+    "test:junit": "node --test --test-reporter=spec --test-reporter=junit --test-reporter-destination=reports/junit.xml tests/api.test.js",
+    "test:e2e": "node --test --test-concurrency=1 --test-reporter=spec tests/selenium/e2e.test.js",
+    "seed": "node backend/seed.js",
+    "verify": "node scripts/verify-api.js"
+  },
+  "keywords": [
+    "attendance",
+    "devops",
+    "docker",
+    "jenkins",
+    "kubernetes",
+    "selenium"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "selenium-webdriver": "^4.51.0",
+    "supertest": "^7.3.1"
+  }
+}

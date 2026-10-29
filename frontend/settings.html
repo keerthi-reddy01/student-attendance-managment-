@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings · AttendX</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="settings">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></div>
+      <div><div class="brand-name">AttendX</div><div class="brand-sub">Attendance DevOps</div></div>
+    </div>
+    <div class="nav-label">Workspace</div>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link" data-nav="home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2Z"/></svg>Dashboard</a>
+      <a class="nav-link" data-nav="attendance" href="attendance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 9h6M9 13h6M9 17h4"/></svg>Mark Attendance</a>
+      <a class="nav-link" data-nav="students" href="students.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Students</a>
+      <a class="nav-link" data-nav="reports" href="reports.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></svg>Monthly Reports</a>
+      <a class="nav-link" data-nav="history" href="history.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>Daily History</a>
+      <div class="nav-label" style="margin-top:18px;">System</div>
+      <a class="nav-link" data-nav="settings" href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-line"><span class="status-dot" data-api-dot></span><span data-api-status>Checking API…</span></div>
+      <div class="sidebar-meta">Docker · Jenkins · Kubernetes · Selenium<br>&copy; <span data-year></span> AttendX</div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main">
+    <div class="main-inner">
+      <div class="mobile-bar">
+        <div class="mobile-brand"><div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 5 5L20 6"/></svg></div>AttendX</div>
+        <button class="icon-btn" id="menuBtn" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+
+      <div class="page-head">
+        <div>
+          <div class="eyebrow">Configuration</div>
+          <h1>Settings</h1>
+          <p>Configure the attendance threshold and review the live system status.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-head with-border">
+            <div>
+              <h2>Attendance threshold</h2>
+              <p>Students below this percentage are flagged in reports and on the dashboard.</p>
+            </div>
+          </div>
+          <form id="settingsForm">
+            <div class="card-body">
+              <div class="threshold-display"><strong id="thresholdValue">75</strong><span>%</span></div>
+              <input type="range" id="thresholdRange" min="0" max="100" step="1" value="75" aria-label="Attendance threshold slider">
+              <div class="row-between">
+                <span class="tiny muted">0%</span>
+                <span class="tiny muted">Recommended: 75%</span>
+                <span class="tiny muted">100%</span>
+              </div>
+              <div class="divider"></div>
+              <div class="field">
+                <label for="institutionInput">Institution / department name</label>
+                <input class="input" id="institutionInput" maxlength="120" placeholder="Department of Computer Science">
+                <span class="hint">Shown on CSV exports and report headers.</span>
+              </div>
+              <div class="alert alert-info" style="margin-top:16px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+                <span>Changing the threshold re-flags students everywhere. Historical attendance records are never modified.</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="small muted" id="settingsUpdated">—</span>
+              <button class="btn btn-primary" type="submit" id="saveSettingsBtn">Save settings</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-head with-border">
+            <div>
+              <h2>System status</h2>
+              <p>Live health information from the Express API.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="refreshHealthBtn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+              Refresh
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="health-list" id="healthList">
+              <div class="health-row"><span class="k">API status</span><span class="v" id="healthStatus">Checking…</span></div>
+              <div class="health-row"><span class="k">Database</span><span class="v" id="healthDb">Checking…</span></div>
+              <div class="health-row"><span class="k">Version</span><span class="v" id="healthVersion">—</span></div>
+              <div class="health-row"><span class="k">Environment</span><span class="v" id="healthEnv">—</span></div>
+              <div class="health-row"><span class="k">Uptime</span><span class="v" id="healthUptime">—</span></div>
+              <div class="health-row"><span class="k">Checked at</span><span class="v" id="healthTime">—</span></div>
+            </div>
+            <div class="divider"></div>
+            <h3 style="margin-bottom:8px">Delivery pipeline</h3>
+            <div class="chip-list">
+              <span class="chip"><span class="dot"></span>Git repository</span>
+              <span class="chip"><span class="dot"></span>Docker image</span>
+              <span class="chip"><span class="dot"></span>Jenkins CI</span>
+              <span class="chip"><span class="dot"></span>Kubernetes</span>
+              <span class="chip"><span class="dot"></span>Selenium E2E</span>
+            </div>
+            <div class="alert alert-info" style="margin-top:16px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+              <span>Docker, Jenkins and Kubernetes run alongside this app. See <strong>README.md</strong> for the exact commands.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <div class="card-head with-border">
+          <div>
+            <h2>About AttendX</h2>
+            <p>Student Attendance Management System using DevOps tools.</p>
+          </div>
+          <span class="badge badge-primary badge-plain">v1.0.0</span>
+        </div>
+        <div class="card-body">
+          <div class="grid grid-3">
+            <div>
+              <h3>Application</h3>
+              <p class="small" style="margin-bottom:0">Node.js 24 · Express 5 · SQLite (built-in) · HTML/CSS/JavaScript. Seven periods per day, date-wise storage, monthly analytics and CSV reports.</p>
+            </div>
+            <div>
+              <h3>DevOps</h3>
+              <p class="small" style="margin-bottom:0">Git version control, Jenkins declarative pipeline, Docker multi-stage image, Kubernetes Deployment + Service + PVC, and Selenium WebDriver tests.</p>
+            </div>
+            <div>
+              <h3>Data</h3>
+              <p class="small" style="margin-bottom:0">All student and attendance data is persisted in a SQLite database with WAL journaling. The location is controlled by the <span class="kbd">DATA_DIR</span> environment variable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
